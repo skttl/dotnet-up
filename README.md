@@ -20,7 +20,21 @@ dotnet tool install -g dotnet-up
 dotnet up
 ```
 
+```
+[npm] > npm install
+
+  [npm]    started in new terminal window
+  [dotnet] started in new terminal window
+
+Press Ctrl+C to stop all.
+```
+
 Finds `dotnet-up.json` in the current directory or any parent. If found in a parent directory, asks for confirmation before starting.
+
+```
+Found dotnet-up.json in: C:\Projects\MyApp
+Start dev processes from there? [Y/n]
+```
 
 ### Scaffold a config file
 
@@ -28,7 +42,10 @@ Finds `dotnet-up.json` in the current directory or any parent. If found in a par
 dotnet up init
 ```
 
-Creates a `dotnet-up.json` in the current directory.
+```
+Created C:\Projects\MyApp\dotnet-up.json
+Edit the file to define your processes, then run 'dotnet up'.
+```
 
 ## Configuration
 
