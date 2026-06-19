@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/skttl/dotnet-up/schema/dotnet-up.schema.json",
+  "title": "dotnet-up configuration",
+  "description": "Configuration file for dotnet-up — a tool to launch local development processes in parallel.",
+  "type": "object",
+  "required": ["processes"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON Schema reference."
+    },
+    "processes": {
+      "type": "array",
+      "description": "List of processes to launch in parallel.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "cmd"],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Short label shown in output and used for identification.",
+            "minLength": 1
+          },
+          "cmd": {
+            "type": "string",
+            "description": "Executable to run (e.g. 'npm', 'dotnet', 'docker').",
+            "minLength": 1
+          },
+          "args": {
+            "type": "array",
+            "description": "Arguments passed to the executable.",
+            "items": { "type": "string" },
+            "default": []
+          },
+          "workDir": {
+            "type": "string",
+            "description": "Working directory. Use {root} to refer to the directory containing dotnet-up.json.",
+            "default": "{root}"
+          },
+          "runBefore": {
+            "type": "array",
+            "description": "Shell commands to run sequentially and blocking before starting this process. If any fails, this process is skipped.",
+            "items": { "type": "string" },
+            "default": []
+          },
+          "env": {
+            "type": "object",
+            "description": "Environment variables to set for this process.",
+            "additionalProperties": { "type": "string" },
+            "default": {}
+          }
+        }
+      }
+    }
+  }
+}
